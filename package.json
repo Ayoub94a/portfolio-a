@@ -1,8 +1,8 @@
 {
-  "name": "portfolio",
+  "name": "portfolio-a",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://Ayoub94a.github.io/portfolio",
+  "homepage": "https://Ayoub94a.github.io/portfolio-a",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
+    
     "firebase": "^12.13.0",
     "framer-motion": "^12.38.0",
     "react": "^19.2.5",
