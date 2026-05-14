@@ -3,6 +3,8 @@ import { motion, useInView } from "framer-motion";
 import { GlassCard, SectionTitle, Button } from "../atoms";
 import { SocialLink } from "../molecules";
 import { FiMail, FiSend } from "react-icons/fi";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase";
 import { contact } from "../../data";
 
 interface FormState {
@@ -21,11 +23,26 @@ export default function Contact() {
   });
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setForm({ name: "", email: "", message: "" });
+    setError(null);
+
+    try {
+      await addDoc(collection(db, "contacts"), {
+        name: form.name,
+        email: form.email,
+        message: form.message,
+        createdAt: serverTimestamp(),
+      });
+      setSent(true);
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setSent(false), 4000);
+    } catch (err) {
+      setError("There was a problem sending your message. Please try again.");
+      console.error("Contact form submit error:", err);
+    }
   };
 
   const handleChange = (
@@ -140,6 +157,9 @@ export default function Contact() {
                       required
                     />
                   </div>
+                  {error ? (
+                    <p className="text-sm text-red-400">{error}</p>
+                  ) : null}
                   <Button
                     type="submit"
                     variant="primary"
