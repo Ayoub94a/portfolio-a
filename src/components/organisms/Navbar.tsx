@@ -84,7 +84,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
           <Button
             variant="outline"
             size="sm"
-            href="/resume.pdf"
+            href="/portfolio-a/resume.pdf"
             className="hidden md:inline-flex"
           >
             Resume

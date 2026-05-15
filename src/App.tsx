@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Navbar,
@@ -15,14 +15,20 @@ import { Divider } from "./components/atoms";
 export default function App() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
+
   const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.classList.toggle("dark", next === "dark");
+    setTheme((current) => (current === "dark" ? "light" : "dark"));
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
+    <div
+      className={`min-h-screen overflow-x-hidden ${
+        theme === "dark" ? "bg-gray-950 text-white" : "bg-white text-slate-950"
+      }`}
+    >
       <CursorGlow />
       <Navbar theme={theme} toggleTheme={toggleTheme} />
 
