@@ -3,10 +3,20 @@ import { Button, Badge } from "../atoms";
 import { TypewriterText, SocialLink } from "../molecules";
 import { FiArrowDown } from "react-icons/fi";
 import { hero } from "../../data";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../firebase";
+
+
 
 export default function Hero() {
   const scrollToProjects = () =>
-    document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
+    {
+  logEvent(analytics, "click_view_my_work");
+
+  document
+    .querySelector("#projects")
+    ?.scrollIntoView({ behavior: "smooth" });
+};
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -74,7 +84,14 @@ export default function Hero() {
           <Button variant="primary" size="lg" onClick={scrollToProjects}>
             View My Work
           </Button>
-          <Button variant="outline" size="lg" href={`mailto:${hero.email}`}>
+          <Button
+            variant="outline"
+            size="lg"
+            href={`mailto:${hero.email}`}
+            onClick={() => {
+              logEvent(analytics, "click_contact");
+            }}
+          >
             Get In Touch
           </Button>
         </motion.div>
@@ -85,9 +102,16 @@ export default function Hero() {
           transition={{ delay: 0.6 }}
           className="flex items-center justify-center gap-3"
         >
-          {hero.socials.map(({ href, icon, label }) => (
-            <SocialLink key={label} href={href} icon={icon} label={label} />
-          ))}
+        {hero.socials.map(({ href, icon, label }) => (
+        <div
+          key={label}
+          onClick={() => {
+            logEvent(analytics, `click_${label.toLowerCase()}`);
+          }}
+        >
+          <SocialLink href={href} icon={icon} label={label} />
+        </div>
+      ))}
         </motion.div>
       </div>
 
