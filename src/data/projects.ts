@@ -125,4 +125,27 @@ export const projects: Project[] = [
     github: "https://github.com/Ayoub94a",
     live: null,
   },
+  {
+  id: 7,
+  emoji: "🏥",
+  title: "ClinicFlow",
+  year: "2026",
+  category: "Full-Stack",
+  description:
+    "Patient and appointment management system with JWT authentication and role-based access.",
+  longDescription:
+    "Built a complete PERN-stack clinic management application using React, Node.js, Express, and PostgreSQL. Implemented JWT authentication, role-based authorization (admin/staff), patient CRUD operations, appointment scheduling, filtering by date and status, database migrations, and seed data for rapid local setup.",
+  stack: [
+    "React",
+    "Node.js",
+    "Express",
+    "PostgreSQL",
+    "JWT",
+    "TypeScript",
+    "REST API"
+  ],
+  github: "https://github.com/Ayoub94a/ClinicFlow",
+  live: null,
+},
+  
 ];
