@@ -17,7 +17,7 @@ export const about: AboutData = {
     "PostgreSQL",
   ],
   stats: {
-    years: 0,
+    years: 1,
     projects: 8,
   },
 };

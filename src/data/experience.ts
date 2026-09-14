@@ -3,6 +3,24 @@ import type { ExperienceItem } from "./types";
 export const experience: ExperienceItem[] = [
   {
     id: 1,
+    period: "08/2026 – Present",
+    role: "Full Stack Developer (Pre-Hiring Internship)",
+    company: "Tython",
+    description:
+      "Developed and maintained full-stack web applications using React, Node.js, and TypeScript, ensuring scalable and clean architecture. Worked with APIs, databases, Git/GitLab in an Agile environment. Designed and integrated reusable components and widgets. Collaborated with the development team to build and improve application features.",
+    skills: [
+      "React",
+      "Node.js",
+      "TypeScript",
+      "Git",
+      "GitLab",
+      "Agile",
+      "REST API",
+      "puck-editor",
+    ],
+  },
+  {
+    id: 2,
     period: "03/2025 – 09/2025",
     role: "Full-Stack Developer Intern",
     company: "OCP Group",
